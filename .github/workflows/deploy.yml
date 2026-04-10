@@ -14,6 +14,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
+        # checking if there is a unclosed tag or typo in a tag
+      - name: HTML Syntax Checking
+        run: |
+          npm install -g htmlhint
+          htmlhint index.html
+
+
+      - name: Check for broken links
+        uses: lycheeverse/lychee-action@v1.9.0
+        with:
+          # it tells the checker to look specifically at HTML file
+          args: './index.html'
+          #it forces the pipeline to turn red and stop if a dead link is found
+          fail: true
+
       # installing Netlify Command Line Interface
       - name: Install Netlify CLI
         run: npm install -g netlify-cli
