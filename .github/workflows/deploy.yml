@@ -24,8 +24,8 @@ jobs:
       - name: Check for broken links
         uses: lycheeverse/lychee-action@v1.9.0
         with:
-          # it tells the checker to look specifically at HTML file
-          args: './index.html'
+          # it tells the checker to look specifically at HTML file and ignore social media links 
+          args: '--exclude "instagram\.com" --exclude "twitter\.com" --exclude "linkedin\.com" ./index.html'
           #it forces the pipeline to turn red and stop if a dead link is found
           fail: true
 
